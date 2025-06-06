@@ -30,8 +30,16 @@ public class UserAppService {
         return userAppRepository.save(userApp);
     }
 
-    public UserApp updateUser(UserApp userApp) {
-        return userAppRepository.save(userApp);
+    public UserApp updateUser(Long userId, UserApp userApp) {
+        UserApp existingUser = userAppRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        existingUser.setEmail(userApp.getEmail());
+        existingUser.setName(userApp.getName());
+        existingUser.setLastname(userApp.getLastname());
+        existingUser.setPassword(userApp.getPassword());
+
+        return userAppRepository.save(existingUser);
     }
 
     public void deleteUser(Long id) {

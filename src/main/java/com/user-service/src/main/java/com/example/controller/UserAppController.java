@@ -29,9 +29,9 @@ public class UserAppController {
         return userAppService.createUser(userApp);
     }
 
-    @PutMapping
-    public UserApp updateUser(@RequestBody UserApp userApp) {
-        return userAppService.updateUser(userApp);
+    @PutMapping("/{userId}")
+    public UserApp updateUser(@PathVariable Long userId, @RequestBody UserApp userApp) {
+        return userAppService.updateUser(userId, userApp);
     }
 
     @DeleteMapping("/{userId}")
