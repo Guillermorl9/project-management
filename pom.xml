@@ -23,6 +23,7 @@
         <module>src/main/java/com/role-service</module>
         <module>src/main/java/com/task-service</module>
         <module>src/main/java/com/project-service</module>
+        <module>src/main/java/com/tag-service</module>
     </modules>
 
     <properties>
