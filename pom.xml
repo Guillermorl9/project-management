@@ -21,6 +21,7 @@
         <module>src/main/java/com/user-service</module>
         <module>src/main/java/com/group-service</module>
         <module>src/main/java/com/role-service</module>
+        <module>src/main/java/com/task-service</module>
     </modules>
 
     <properties>
