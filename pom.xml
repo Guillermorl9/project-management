@@ -19,6 +19,7 @@
 
     <modules>
         <module>src/main/java/com/user-service</module>
+        <module>src/main/java/com/group-service</module>
     </modules>
 
     <properties>
