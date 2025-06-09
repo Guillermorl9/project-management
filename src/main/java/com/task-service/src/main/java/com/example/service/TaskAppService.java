@@ -41,7 +41,7 @@ public class TaskAppService {
         existingTask.setDue_date(taskApp.getDue_date());
         existingTask.setModified_by(taskApp.getModified_by());
         existingTask.setModified_date(taskApp.getModified_date());
-        existingTask.setProject_id(taskApp.getProject_id());
+        existingTask.setProjectId(taskApp.getProjectId());
         existingTask.setCreated_by(taskApp.getCreated_by());
 
         return taskAppRepository.save(existingTask);

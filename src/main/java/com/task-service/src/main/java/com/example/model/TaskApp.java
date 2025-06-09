@@ -25,6 +25,6 @@ public class TaskApp {
     private String due_date;
     private String modified_by;
     private String modified_date;
-    private String project_id;
+    private String projectId;
     private String created_by;
 }
