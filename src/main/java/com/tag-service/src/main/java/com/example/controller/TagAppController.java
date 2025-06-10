@@ -26,6 +26,7 @@ public class TagAppController {
 
     @PostMapping
     public TagApp createTag(@RequestBody TagApp tagApp) {
+        System.out.println("Creating tag: " + tagApp);
         return tagAppService.createTag(tagApp);
     }
 

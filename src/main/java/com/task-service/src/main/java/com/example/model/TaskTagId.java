@@ -13,8 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Data
-public class TaskGroupId implements Serializable {
+public class TaskTagId implements Serializable {
 
     private Long taskId;
-    private Long groupId;
+    private Long tagId;
 }

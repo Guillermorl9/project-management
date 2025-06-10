@@ -17,9 +17,7 @@ public class TaskGroupController {
     @GetMapping
     public List<Long> getGroupIdsByTaskId(@PathVariable Long taskId) {
         List<TaskGroup> taskGroups = taskGroupService.getGroupsByTaskId(taskId);
-        return taskGroups.stream()
-                .map(tg -> tg.getId().getGroupId())
-                .toList();
+        return taskGroups.stream().map(tg -> tg.getId().getGroupId()).toList();
     }
 
     @PostMapping("/{groupId}")
