@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.LoginResponse;
 import com.example.dto.UserAppDto;
 import com.example.mapper.UserAppMapper;
 import com.example.model.UserApp;
@@ -35,6 +36,18 @@ public class UserAppController {
                 userApp.getEmail(), userApp.getName(), userApp.getLastname(), userApp.getPassword());
         UserAppDto userAppDto = UserAppMapper.toDto(newUserApp);
         return ResponseEntity.status(HttpStatus.CREATED).body(userAppDto);
+    }
+
+    @GetMapping("/by-email")
+    public LoginResponse getUserByEmail(@RequestParam String email) {
+        System.out.println("Email recibido: " + email);
+        UserApp userApp = userAppService.findByEmail(email);
+
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setEmail(userApp.getEmail());
+        loginResponse.setPassword(userApp.getPassword());
+
+        return loginResponse;
     }
 
     @GetMapping("/{userId}")

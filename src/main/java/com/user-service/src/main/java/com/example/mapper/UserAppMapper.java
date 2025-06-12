@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.example.dto.LoginResponse;
 import com.example.dto.UserAppDto;
 import com.example.model.UserApp;
 
@@ -15,5 +16,15 @@ public class UserAppMapper {
         dto.setEmail(userApp.getEmail());
 
         return dto;
+    }
+
+    public static LoginResponse toResponse(UserApp userApp) {
+        if (userApp == null) return null;
+
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setEmail(userApp.getEmail());
+        loginResponse.setPassword(userApp.getPassword());
+
+        return loginResponse;
     }
 }
