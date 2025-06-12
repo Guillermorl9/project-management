@@ -31,6 +31,7 @@ public class TaskController {
 
     @PostMapping
     public TaskApp createTask(@RequestBody TaskApp taskApp) {
+        System.out.println("Petición recibida: " + taskApp);
         return taskAppService.createTask(taskApp);
     }
 
