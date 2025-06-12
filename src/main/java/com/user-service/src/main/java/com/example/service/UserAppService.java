@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.model.UserApp;
 import com.example.repository.UserAppRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,27 @@ import java.util.List;
 public class UserAppService {
 
     private final UserAppRepository userAppRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<UserApp> getAllUsers() {
         return userAppRepository.findAll();
     }
 
-    public UserApp getUserByEmail(String email) {
+    public UserApp saveUserData(String email, String name, String lastname, String password) {
+        if (userAppRepository.findByEmail(email) != null) {
+            throw new IllegalArgumentException("Email already exists");
+        }
+
+        UserApp userApp = new UserApp();
+        userApp.setEmail(email);
+        userApp.setName(name);
+        userApp.setPassword(passwordEncoder.encode(password));
+        userApp.setLastname(lastname);
+
+        return userAppRepository.save(userApp);
+    }
+
+    public UserApp findByEmail(String email) {
         return userAppRepository.findByEmail(email);
     }
 
@@ -37,7 +53,6 @@ public class UserAppService {
         existingUser.setEmail(userApp.getEmail());
         existingUser.setName(userApp.getName());
         existingUser.setLastname(userApp.getLastname());
-        existingUser.setPassword(userApp.getPassword());
 
         return userAppRepository.save(existingUser);
     }

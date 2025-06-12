@@ -24,6 +24,7 @@
         <module>src/main/java/com/task-service</module>
         <module>src/main/java/com/project-service</module>
         <module>src/main/java/com/tag-service</module>
+        <module>src/main/java/com/auth-service</module>
     </modules>
 
     <properties>

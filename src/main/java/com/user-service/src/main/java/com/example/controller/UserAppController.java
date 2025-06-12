@@ -1,8 +1,12 @@
 package com.example.controller;
 
+import com.example.dto.UserAppDto;
+import com.example.mapper.UserAppMapper;
 import com.example.model.UserApp;
 import com.example.service.UserAppService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +23,21 @@ public class UserAppController {
         return userAppService.getAllUsers();
     }
 
-    @GetMapping("/userId")
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody UserApp userApp) {
+        UserApp existingUser = userAppService.findByEmail(userApp.getEmail());
+
+        if (existingUser != null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Mail already exists");
+        }
+
+        UserApp newUserApp = userAppService.saveUserData(
+                userApp.getEmail(), userApp.getName(), userApp.getLastname(), userApp.getPassword());
+        UserAppDto userAppDto = UserAppMapper.toDto(newUserApp);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userAppDto);
+    }
+
+    @GetMapping("/{userId}")
     public UserApp getUserById(@PathVariable Long userId) {
         return userAppService.getUserById(userId);
     }
